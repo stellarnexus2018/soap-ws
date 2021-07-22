@@ -1,0 +1,45 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:schema="http://igoryasha.com/ws/schemas"
+                  xmlns:tns="http://igoryasha.com/ws/difinitions"
+                  targetNamespace="http://igoryasha.com/ws/difinitions">
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://igoryasha.com/ws/schemas" schemaLocation="input_data.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+
+  <!-- We define the DS message, which gets used in the portType -->
+  <wsdl:message name="DS">
+    <!-- the DS type is defined in the schema -->
+    <wsdl:part name="DS" element="schema:DS"/>
+  </wsdl:message>
+
+  <wsdl:portType name="DS">
+    <wsdl:operation name="insurance">
+      <wsdl:input message="tns:DS" name="DS"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <!-- we define the DsBinding, which get used in the port -->
+  <wsdl:binding name="DsBinding" type="tns:DS">
+    <!-- we use a document/literal style -->
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <!-- the literal "http://schemas.xmlsoap.org/soap/http" signifies a HTTP transport -->
+    <wsdl:operation name="insurance">
+      <!-- the soapAction attribute signifies the SOAPAction HTTP header that will be sent with every request -->
+      <soap:operation soapAction="http://igoryasha.com/ApplicationInsurance"/>
+      <wsdl:input name="DS">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="InsuranceApplicationService">
+    <wsdl:port name="InsuranceApplicationPort" binding="tns:DsBinding">
+      <!-- the http://localhost:8080/insuranceApplicationService/ address is the URL where the web service can be invoked -->
+      <soap:address location="http://localhost:8080/insuranceApplicationService/"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>

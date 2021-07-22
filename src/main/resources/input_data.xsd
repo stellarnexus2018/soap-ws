@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://igoryasha.com/ws/schemas"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="sch:embedDSWidgetType" name="embedDSWidget" xmlns:sch="http://igoryasha.com/ws/schemas"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="embedDSWidgetType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="user_authid"/>
+      <xs:element type="xs:string" name="session_sid"/>
+      <xs:element type="xs:string" name="signature_field_name"/>
+      <xs:element type="xs:string" name="conn_origin"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

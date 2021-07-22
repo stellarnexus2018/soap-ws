@@ -1,0 +1,8 @@
+<DS xmlns="http://igoryasha.com/ws/schemas">
+  <embedDSWidget>
+    <user_authid>1</user_authid>
+    <session_sid>qqqwww</session_sid>
+    <signature_field_name>DS_SIGNATURE</signature_field_name>
+    <conn_origin>JDBC</conn_origin>
+  </embedDSWidget>
+</DS>
